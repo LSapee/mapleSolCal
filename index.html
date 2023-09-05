@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>솔 에르다 계산기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+  .container>h1 {text-align: center; height: 80px;line-height: 80px;}
+  input{right-margin:0}
+  .col-5 {font-size:2em; text-align: center; padding:0; background:rebeccapurple; color:#fff; border-bottom: 1px solid #000; box-sizing: border-box;}
+  .col-4 {font-size:0.8em;border: 1px solid #000; box-sizing: border-box;}
+  .count {text-align: right}
+
+</style>
+<script>
+  const solOrigin = [5,1,1,1,2,2,2,3,3,10,3,3,4,4,4,4,4,4,5,15,5,5,5,5,5,6,6,6,7,20];
+  const origin = [100,30,35,40,45,50,55,60,65,200,80,90,100,110,120,130,140,150,160,350,170,180,190,200,210,220,230,240,250,500];
+  const five =[75,23,27,30,34,38,42,45,49,150,60,68,75,83,90,98,105,113,120,263,128,135,143,150,158,165,173,180,188,375];
+  const solfive = [4,1,1,1,2,2,2,3,3,8,3,3,3 ,3,3,3 ,3,3,4,12,4,4,4,4,4,5,5,5,6,15];
+  const mas = [50,15,18,20,23,25,28,30,33,100,40,45,50,55,60,65,70,75,80,175,85,90,95,100,105,110,115,120,125,250];
+  const solMas = [3,1,1,1,1,1,1,2,2,5,2,2,2,2,2,2,2,2,3, 8,3,3,3,3,3,3,3,3,4,10];
+
+
+  $(document).ready(function() {
+        allSum();
+      //오리진 부분
+      $("#myOriginCore").on("propertychange change paste input", function() {
+        const myOriginCore = $("#myOriginCore").val();
+        const targetOriginCore = $("#targetOriginCore").val();
+        if(myOriginCore>30 ){
+            $("#myOriginCore").val(1);
+            alert("30개 이하로 작성해주세요");
+        }
+        if(targetOriginCore>30){
+            $("#targetOriginCore").val(1);
+            alert("30개 이하로 작성해주세요");
+        }
+        if(myOriginCore<=targetOriginCore){
+            allSum();
+        }
+      });
+      $("#targetOriginCore").on("propertychange change paste input", function() {
+          const myOriginCore = $("#myOriginCore").val();
+          const targetOriginCore = $("#targetOriginCore").val();
+          if(myOriginCore>30 ){
+              $("#myOriginCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetOriginCore>30){
+              $("#targetOriginCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myOriginCore<=targetOriginCore){
+            allSum();
+          }
+      });
+
+      //마스터리 코어
+      $("#myMasCore").on("propertychange change paste input", function() {
+          const myMasCore = $("#myMasCore").val();
+          const targetMasCore = $("#targetMasCore").val();
+          if(myMasCore>30 ){
+              $("#myMasCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetMasCore>30){
+              $("#targetMasCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myMasCore<=targetMasCore){
+            allSum();
+          }
+      });
+      $("#targetMasCore").on("propertychange change paste input", function() {
+          const myMasCore = $("#myMasCore").val();
+          const targetMasCore = $("#targetMasCore").val();
+          if(myMasCore>30){
+              $("#myMasCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetMasCore>30){
+              $("#targetMasCore").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myMasCore<=targetMasCore){
+            allSum();
+          }
+      });
+
+
+      //강화코어 1
+      $("#myEnCore1").on("propertychange change paste input", function() {
+          const myEnCore1 = $("#myEnCore1").val();
+          const targetEnCore1 = $("#targetEnCore1").val();
+          if(myEnCore1>30 ){
+              $("#myEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore1>30){
+              $("#targetEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore1<=targetEnCore1){
+              allSum();
+          }
+      });
+      $("#targetEnCore1").on("propertychange change paste input", function() {
+          const myEnCore1 = $("#myEnCore1").val();
+          const targetEnCore1 = $("#targetEnCore1").val();
+          if(myEnCore1>30 ){
+              $("#myEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore1>30){
+              $("#targetEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore1<=targetEnCore1){
+              allSum();
+          }
+      });
+      //강화코어 2
+      $("#myEnCore2").on("propertychange change paste input", function() {
+          const myEnCore2 = $("#myEnCore2").val();
+          const targetEnCore2 = $("#targetEnCore2").val();
+          if(myEnCore2>30 ){
+              $("#myEnCore2").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore2>30){
+              $("#targetEnCore2").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore2<=targetEnCore2){
+              allSum();
+          }
+      });
+      $("#targetEnCore2").on("propertychange change paste input", function() {
+          const myEnCore2 = $("#myEnCore2").val();
+          const targetEnCore2 = $("#targetEnCore2").val();
+          if(myEnCore2>30 ){
+              $("#myEnCore2").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore2>30){
+              $("#targetEnCore2").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore2<=targetEnCore2){
+              allSum();
+          }
+      });
+      //강화코어 3
+      $("#myEnCore3").on("propertychange change paste input", function() {
+          const myEnCore3 = $("#myEnCore3").val();
+          const targetEnCore3 = $("#targetEnCore3").val();
+          if(myEnCore3>30 ){
+              $("#myEnCore3").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore3>30){
+              $("#targetEnCore3").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore3<=targetEnCore3){
+              allSum();
+          }
+      });
+      $("#targetEnCore3").on("propertychange change paste input", function() {
+          const myEnCore3 = $("#myEnCore3").val();
+          const targetEnCore3 = $("#targetEnCore3").val();
+          if(myEnCore3>30 ){
+              $("#myEnCore3").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore3>30){
+              $("#targetEnCore3").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore3<=targetEnCore3){
+              allSum();
+          }
+      });
+      //강화코어 4
+      $("#myEnCore4").on("propertychange change paste input", function() {
+          const myEnCore4 = $("#myEnCore4").val();
+          const targetEnCore4 = $("#targetEnCore4").val();
+          if(myEnCore4>30 ){
+              $("#myEnCore4").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore4>30){
+              $("#targetEnCore4").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore4<=targetEnCore4){
+              allSum();
+          }
+      });
+      $("#targetEnCore4").on("propertychange change paste input", function() {
+          const myEnCore1 = $("#myEnCore1").val();
+          const targetEnCore1 = $("#targetEnCore1").val();
+          if(myEnCore1>30 ){
+              $("#myEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(targetEnCore1>30){
+              $("#targetEnCore1").val(1);
+              alert("30개 이하로 작성해주세요");
+          }
+          if(myEnCore1<=targetEnCore1){
+              allSum();
+          }
+      });
+      function allSum(){
+          let oSol =0;
+          let oPiece =0;
+          let mSol =0;
+          let mPiece =0;
+          let EnSol1 =0;
+          let EnPiece1 =0;
+          let EnSol2 =0;
+          let EnPiece2 =0;
+          let EnSol3 =0;
+          let EnPiece3 =0;
+          let EnSol4 =0;
+          let EnPiece4 =0;
+          let myOriginCore = $("#myOriginCore").val();
+          let targetOriginCore =  $("#targetOriginCore").val();
+          let myMasCore = $("#myMasCore").val();
+          let targetMasCore =$("#targetMasCore").val();
+          let myEnCore1 =$("#myEnCore1").val();
+          let targetEnCore1 =$("#targetEnCore1").val();
+          let myEnCore2 =$("#myEnCore2").val();
+          let targetEnCore2 =$("#targetEnCore2").val();
+          let myEnCore3 =$("#myEnCore3").val();
+          let targetEnCore3 =$("#targetEnCore3").val();
+          let myEnCore4 =$("#myEnCore4").val();
+          let targetEnCore4 =$("#targetEnCore4").val();
+          //오리진 계산
+          for(let i=myOriginCore; i<targetOriginCore; i++){
+              oSol+= solOrigin[i];
+              oPiece += origin[i];
+          }
+          $("#oC").text(oSol);
+          $("#oP").text(oPiece);
+          //마스터리 계산
+          for(let i=myMasCore; i<targetMasCore; i++){
+              mSol+= solMas[i];
+              mPiece += mas[i];
+          }
+          $("#mC").text(oSol);
+          $("#mP").text(oPiece);
+          //강화1 계산
+          for(let i=myEnCore1; i<targetEnCore1; i++){
+              EnSol1+= solfive[i];
+              EnPiece1 += five[i];
+          }
+          $("#EnC1").text(EnSol1);
+          $("#EnP1").text(EnPiece1);
+          //강화2 계산
+          for(let i=myEnCore2; i<targetEnCore2; i++){
+              EnSol2+= solfive[i];
+              EnPiece2 += five[i];
+          }
+          $("#EnC2").text(EnSol2);
+          $("#EnP2").text(EnPiece2);
+          //강화3 계산
+          for(let i=myEnCore3; i<targetEnCore3; i++){
+              EnSol3+= solfive[i];
+              EnPiece3 += five[i];
+          }
+          $("#EnC3").text(EnSol3);
+          $("#EnP3").text(EnPiece3);
+          //강화4 계산
+          for(let i=myEnCore4; i<targetEnCore4; i++){
+              EnSol4+= solfive[i];
+              EnPiece4 += five[i];
+          }
+          $("#EnC4").text(EnSol4);
+          $("#EnP4").text(EnPiece4);
+
+          $("#EnCAll").text(EnSol1+EnSol2+EnSol3+EnSol4);
+          $("#EnPAll").text(EnPiece1+EnPiece2+EnPiece3+EnPiece3);
+          let moreSol =oSol+mSol+EnSol1+EnSol2+EnSol3+EnSol4;
+          let morePiece =oPiece+mPiece+EnPiece1+EnPiece2+EnPiece3+EnPiece4;
+          if(morePiece!=NaN && moreSol!=NaN){
+              $("#allSol").text(moreSol);
+              $("#allPiece").text(morePiece);
+          }
+      }
+
+
+      //계산기 부분
+      $("#mySol").on("propertychange change paste input", function() {
+          const mySol = $('#mySol').val();
+          const price = $("#price").val();
+          const morePieceCal = $("#allPiece").text();
+          let plusPiece = morePieceCal-mySol;
+          if(plusPiece<0) plusPiece =0;
+          if(plusPiece!=0 && price!=0 &&price.length!=0){
+              $("#piece").text(plusPiece);
+              $("#meso").text(Math.trunc(plusPiece*price/10000) + " 억 " +(plusPiece*price)%10000 +" 만 메소");
+          }
+      });
+      $("#price").on("propertychange change paste input", function() {
+          const mySol = $('#mySol').val();
+          const price = $("#price").val();
+          const morePieceCal = $("#allPiece").text();
+          let plusPiece = morePieceCal-mySol;
+          if(plusPiece<0) plusPiece =0;
+          if(plusPiece!=0 && price!=0 &&price.length!=0){
+              $("#piece").text(plusPiece);
+              $("#meso").text(Math.trunc(plusPiece*price/10000) + " 억 " +(plusPiece*price)%10000 +" 만 메소");
+          }
+      });
+  });
+
+</script>
+<body>
+<div class="container">
+    <br/>
+  <h1>
+    솔 에르다 계산기
+  </h1>
+    <br/>
+  <div class="row">
+    <div class="col-5" >
+      <span>현재 오리진 코어 레벨</span>
+      <input id="myOriginCore" type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+    </div>
+      <div class="col-2"></div>
+    <div class="col-5">
+      <span>목표 오리진 코어 레벨</span>
+      <input id="targetOriginCore" type="number"  min="1" max="30" maxlength="2" style="width:150px; float:right;" value="2"/>
+    </div>
+  </div>
+  <div>
+      <br/>
+      <br/>
+  </div>
+  <div class="row">
+        <div class="col-5" style="background: #882176">
+            <span>현재 마스터리 코어 레벨</span>
+            <input id="myMasCore"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5" style="background: #882176">
+            <span>목표 마스터리 코어 레벨</span>
+            <input id="targetMasCore" type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+        </div>
+  </div>
+    <div>
+        <br/>
+        <br/>
+    </div>
+    <div class="row">
+        <div class="col-5" style="background: #407BB6">
+            <span>현재 강화 코어 1 레벨</span>
+            <input id="myEnCore1"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5"style="background: #407BB6">
+            <span>목표 강화 코어 1 레벨</span>
+            <input id="targetEnCore1"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5" style="background: #407BB6">
+            <span>현재 강화 코어 2 레벨</span>
+            <input id="myEnCore2"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5"style="background: #407BB6">
+            <span>목표 강화 코어 2 레벨</span>
+            <input id="targetEnCore2"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5" style="background: #407BB6">
+            <span>현재 강화 코어 3 레벨</span>
+            <input id="myEnCore3"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5" style="background: #407BB6">
+            <span>목표 강화 코어 3 레벨</span>
+            <input id="targetEnCore3"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5" style="background: #407BB6">
+            <span>현재 강화 코어 4 레벨</span>
+            <input id="myEnCore4"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5" style="background: #407BB6">
+            <span>목표 강화 코어 4 레벨</span>
+            <input id="targetEnCore4"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
+        </div>
+    </div>
+    <div>
+        <br/>
+        <br/>
+    </div>
+    <div class="row">
+        <div class="col-5"style="padding:0 14px; background: #fff; color:#000; border-bottom: 0;">
+            <div class="row" >
+                <div class="col-4">필요 수량</div>
+                <div class="col-4">솔 에르다</div>
+                <div class="col-4"> 솔 에르다 조각</div>
+            </div>
+            <div class="row" style="background:rebeccapurple; color:#fff">
+                <div class="col-4">오리진 코어</div>
+                <div class="col-4 count"><span id="oC"></span>개</div>
+                <div class="col-4 count"><span id="oP"></span>개</div>
+            </div>
+            <div class="row" style="background: #882176; color:#fff;">
+                <div class="col-4" >마스터리 코어</div>
+                <div class="col-4 count"><span id="mC"></span>개</div>
+                <div class="col-4 count"><span id="mP"></span>개</div>
+            </div>
+            <div class="row" style="background: #407BB6; color:#fff">
+                <div class="col-4">강화코어 총합</div>
+                <div class="col-4 count"><span id="EnCAll"></span>개</div>
+                <div class="col-4 count"><span id="EnPAll"></span>개</div>
+            </div>
+            <div class="row"style="background: #407BB6;color:#fff">
+                <div class="col-4">ㄴ강화코어 1</div>
+                <div class="col-4 count"><span id="EnC1"></span>개</div>
+                <div class="col-4 count"><span id="EnP1"></span>개</div>
+            </div>
+            <div class="row"style="background: #407BB6;color:#fff">
+                <div class="col-4">ㄴ강화코어 2</div>
+                <div class="col-4 count"><span id="EnC2"></span>개</div>
+                <div class="col-4 count"><span id="EnP2"></span>개</div>
+            </div>
+            <div class="row"style="background: #407BB6;color:#fff">
+                <div class="col-4">ㄴ강화코어 3</div>
+                <div class="col-4 count"><span id="EnC3"></span>개</div>
+                <div class="col-4 count"><span id="EnP3"></span>개</div>
+            </div>
+            <div class="row" style="background: #407BB6;color:#fff">
+                <div class="col-4">ㄴ강화코어 4</div>
+                <div class="col-4 count"><span id="EnC4"></span>개</div>
+                <div class="col-4 count"><span id="EnP4"></span>개</div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5" style="padding:0 14px; background: #fff; border:0;">
+            <div class="row" style="padding:0">
+                <div class="col-12" style="background:#413064; border-bottom: 2px solid #000;">총합</div>
+            </div>
+            <div class="row" style="padding:0">
+                <div class="col-8" style="background:#413064;font-size:0.8em;">에르다 솔</div>
+                <div class="col-4 count" style="font-size:0.8em; border: 1px solid #000; box-sizing: border-box;color:#000;"><span id="allSol"></span> 개</div>
+            </div>
+            <div class="row" style="padding:0">
+                <div class="col-8" style="background:#413064;font-size:0.8em;">에르다 조각</div>
+                <div class="col-4 count" style="font-size:0.8em; border: 1px solid #000; box-sizing: border-box; color:#000;"><span id="allPiece"></span> 개</div>
+            </div>
+            <div>
+                <br/>
+            </div>
+            <div class="row">
+                <div class="col-12" style="background: #262626; border-bottom: 1px solid #000;">
+                    <span>경매장 구매시 계산기</span>
+                </div>
+                <div class="col-12" style="background: #262626; padding:0;">
+                    <span>현재 조각 보유 갯수</span>
+                    <input id="mySol" type="text" style="width:150px; float:right;" value="1"/>
+                </div>
+                <div class="col-12" style="background: #262626; padding:0; " >
+                    <span>경매장 조각 가격</span>
+                    <input id="price" type="text" style="width:150px; float:right;" placeholder="만 메소"/>
+                </div>
+                <div class="col-12" style="color:#000;">
+                    <span>필요한 조각 :</span>
+                    <span id="piece">0</span>
+                    <span>개</span>
+                </div>
+                <div class="col-12" style="color:#000;">
+                    <span>필요한 메소 :</span>
+                    <span id="meso">0</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
