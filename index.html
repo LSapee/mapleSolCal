@@ -7,14 +7,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/572dc1d504.js"></script>
 </head>
 <style>
+   html,body{height: 100%}
   .container>h1 {text-align: center; height: 80px;line-height: 80px;}
   input{right-margin:0}
   .col-5 {font-size:2em; text-align: center; padding:0; background:rebeccapurple; color:#fff; border-bottom: 1px solid #000; box-sizing: border-box;}
   .col-4 {font-size:0.8em;border: 1px solid #000; box-sizing: border-box;}
   .count {text-align: right}
+    ul,li {list-style: none;}
+    #warrior:hover > #warrior ul {visibility: inherit; height:100%;}
+    #sideMenu{transition: 1s}
+    .jobs{margin:0;padding:0px;}
 
+    .jobs p{ margin: 0;padding:10px 10px 10px 20px; font-size:1em; text-align: left}
+    .jobs p:hover{ background: #CFD3D8;}
 </style>
 <script>
   const solOrigin = [5,1,1,1,2,2,2,3,3,10,3,3,4,4,4,4,4,4,5,15,5,5,5,5,5,6,6,6,7,20];
@@ -23,8 +31,6 @@
   const solfive = [4,1,1,1,2,2,2,3,3,8,3,3,3 ,3,3,3 ,3,3,4,12,4,4,4,4,4,5,5,5,6,15];
   const mas = [50,15,18,20,23,25,28,30,33,100,40,45,50,55,60,65,70,75,80,175,85,90,95,100,105,110,115,120,125,250];
   const solMas = [3,1,1,1,1,1,1,2,2,5,2,2,2,2,2,2,2,2,3, 8,3,3,3,3,3,3,3,3,4,10];
-
-
   $(document).ready(function() {
         allSum();
       //오리진 부분
@@ -320,8 +326,142 @@
       });
   });
 
+  function showNav(){
+      $("#sideMenu").css({left:0});
+      $("#sideExit").css("left","15px");
+      $("#sideShow").css("visibility", "hidden");
+      $("#sideExit").css("visibility", "inherit");
+  }
+  function closeNav(){
+      $("#sideMenu").css({left:-300});
+      $("#sideShow").css("left","315px");
+      $("#sideShow").css("visibility","inherit",);
+      $("#sideExit").css("visibility", "hidden");
+  }
+
 </script>
-<body>
+<body >
+<div id="sideMenu" style="position: fixed; left:-300px; height:100vh; background: #ccc; width: 300px;">
+    <h1 id="sideShow"style="position: absolute; width: 95%; top:10px; left :315px;" onclick="showNav()"><i class="fa fa-bars" aria-hidden="true"></i></h1>
+    <h1 id="sideExit" style="position: absolute;width: 95%;  top:10px; left :15px; transition: 1s; visibility: hidden" onclick="closeNav()"><i class="fa fa-times-circle" aria-hidden="true"></i></h1>
+    <div style="width: 300px; top:80px; position: absolute; left:0px;">
+        <h3 style="text-align: center;margin-top:0;">인벤 직업별 효율표 링크</h3>
+        <div class="accordion accordion-flush" id="job">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-warrior" aria-expanded="false" aria-controls="flush-warrior">
+                        전사
+                    </button>
+                </h2>
+                <div id="flush-warrior" class="accordion-collapse collapse" data-bs-parent="#job">
+                    <div class="accordion-body" style="padding:0;">
+                        <ul style="padding:0">
+                            <li class="jobs"><p onclick=location.href='https://www.inven.co.kr/board/maple/2294/334743?p=2&category=%ED%9E%88%EC%96%B4%EB%A1%9C&name=subject&keyword=6%EC%B0%A8'>히어로</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/335448?my=opi">팔라딘</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/336368">다크나이트</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/334520?category=%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0">소울마스터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/334013">아란</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/331010">데몬슬레이어</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/343802?category=%EB%AF%B8%ED%95%98%EC%9D%BC&name=subject&keyword=6%EC%B0%A8">미하일</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/336111">카이저</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/333121">데몬어벤져</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/334554?p=3&category=%EC%A0%9C%EB%A1%9C">제로</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/337292">블래스터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2294/334188">아델</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-Wizard" aria-expanded="false" aria-controls="flush-Wizard">
+                        마법사
+                    </button>
+                </h2>
+                <div id="flush-Wizard" class="accordion-collapse collapse" data-bs-parent="#job">
+                    <div class="accordion-body" style="padding:0">
+                        <ul style="padding:0">
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/208660">아크(불,독)</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/207063?category=%EC%95%84%ED%81%AC%28%EC%8D%AC%EC%BD%9C%29&p=4">아크(썬,콜)</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206543">비숍</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206997">플레임위자드</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206966">에반</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/208310">배틀메이지</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206826">루미너스</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206162">키네시스</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206591">일리움</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2295/206211">라라</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-Archer" aria-expanded="false" aria-controls="flush-Archer">
+                        궁수
+                    </button>
+                </h2>
+                <div id="flush-Archer" class="accordion-collapse collapse" data-bs-parent="#job">
+                    <div class="accordion-body" style="padding:0">
+                        <ul style="padding:0">
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/136239">보우마스터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/135189">신궁</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/134934">윈드브레이커</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/134681">와일드헌터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2304/35049">메르세데스</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/134768">패스파인더</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2296/135809">카인</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-thief" aria-expanded="false" aria-controls="flush-thief">
+                        도적
+                    </button>
+                </h2>
+                <div id="flush-thief" class="accordion-collapse collapse" data-bs-parent="#job">
+                    <div class="accordion-body" style="padding:0">
+                        <ul style="padding:0">
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/245940">나이트로드</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/243965">섀도어</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/244738">나이트워커</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/244820">듀얼블레이드</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/246149">괴도팬텀</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/244916">카데나</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2297/242713">호영</p></li>
+                            <li class="jobs"><p onclick=location.href="">칼리 못찾음</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-pirate" aria-expanded="false" aria-controls="flush-pirate">
+                        해적
+                    </button>
+                </h2>
+                <div id="flush-pirate" class="accordion-collapse collapse" data-bs-parent="#job">
+                    <div class="accordion-body" style="padding:0">
+                        <ul style="padding:0">
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/157433">메카닉</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/159919">바이퍼</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/159395">캡틴</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/161282">스트라이커</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/159227">캐논슈터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/161128">엔젤릭버스터</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/159890">제논</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/159348">은월</p></li>
+                            <li class="jobs"><p onclick=location.href="https://www.inven.co.kr/board/maple/2298/158328">아크</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 <div class="container">
     <br/>
   <h1>
