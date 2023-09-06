@@ -13,7 +13,7 @@
    html,body{height: 100%}
   .container>h1 {text-align: center; height: 80px;line-height: 80px;}
   input{right-margin:0}
-  .col-5 {font-size:2em; text-align: center; padding:0; background:rebeccapurple; color:#fff; border-bottom: 1px solid #000; box-sizing: border-box;}
+  .col-5 {font-size:1.5em; text-align: center; padding:0; background:rebeccapurple; color:#fff; border-bottom: 1px solid #000; box-sizing: border-box;}
   .col-4 {font-size:0.8em;border: 1px solid #000; box-sizing: border-box;}
   .count {text-align: right}
     ul,li {list-style: none;}
@@ -23,6 +23,20 @@
 
     .jobs p{ margin: 0;padding:10px 10px 10px 20px; font-size:1em; text-align: left}
     .jobs p:hover{ background: #CFD3D8;}
+   @media (max-width: 1000px) {
+       .col-2 {
+           display: none;
+       }
+       .col-5{
+           font-size: 0.9em;
+       }
+   }
+   @media (min-width: 1000px) {
+       .col-1 {
+           display: none;
+       }
+
+   }
 </style>
 <script>
   const solOrigin = [5,1,1,1,2,2,2,3,3,10,3,3,4,4,4,4,4,4,5,15,5,5,5,5,5,6,6,6,7,20];
@@ -259,8 +273,8 @@
               mSol+= solMas[i];
               mPiece += mas[i];
           }
-          $("#mC").text(oSol);
-          $("#mP").text(oPiece);
+          $("#mC").text(mSol);
+          $("#mP").text(mPiece);
           //강화1 계산
           for(let i=myEnCore1; i<targetEnCore1; i++){
               EnSol1+= solfive[i];
@@ -474,6 +488,7 @@
       <input id="myOriginCore" type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
     </div>
       <div class="col-2"></div>
+      <div class="col-1"></div>
     <div class="col-5">
       <span>목표 오리진 코어 레벨</span>
       <input id="targetOriginCore" type="number"  min="1" max="30" maxlength="2" style="width:150px; float:right;" value="2"/>
@@ -489,6 +504,7 @@
             <input id="myMasCore"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5" style="background: #882176">
             <span>목표 마스터리 코어 레벨</span>
             <input id="targetMasCore" type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
@@ -504,6 +520,7 @@
             <input id="myEnCore1"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5"style="background: #407BB6">
             <span>목표 강화 코어 1 레벨</span>
             <input id="targetEnCore1"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
@@ -515,6 +532,7 @@
             <input id="myEnCore2"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5"style="background: #407BB6">
             <span>목표 강화 코어 2 레벨</span>
             <input id="targetEnCore2"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
@@ -526,6 +544,7 @@
             <input id="myEnCore3"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5" style="background: #407BB6">
             <span>목표 강화 코어 3 레벨</span>
             <input id="targetEnCore3"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
@@ -537,6 +556,7 @@
             <input id="myEnCore4"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="0"/>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5" style="background: #407BB6">
             <span>목표 강화 코어 4 레벨</span>
             <input id="targetEnCore4"type="number" min="0" max="30" maxlength="2" style="width:150px; float:right;" value="1"/>
@@ -590,6 +610,7 @@
             </div>
         </div>
         <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col-5" style="padding:0 14px; background: #fff; border:0;">
             <div class="row" style="padding:0">
                 <div class="col-12" style="background:#413064; border-bottom: 2px solid #000;">총합</div>
@@ -633,7 +654,7 @@
 </div>
 <br/>
 <br/>
-<div class="container-fluid" style="background: #333; height: 100px;line-height: 100px;">
+<div class="container-fluid" style="background: #333; height: 100px;line-height: 100px; position: fixed; bottom:0;">
     <p style="text-align: center; color:#eee;font-size: 1.5em;" >제작자 : 증감수</p>
 </div>
 </body>
